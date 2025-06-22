@@ -94,3 +94,39 @@ for i in range(XGB_WINDOW, len(df_clean)):
         df.loc[idx, 'XGB_Long_Conf'] = probs[2]
         df.loc[idx, 'XGB_Confidence'] = max(probs)
         df.loc[idx, 'Confidence_Gap'] = abs(probs[2] - probs[0])
+
+
+# ------------------ #
+# Step 3: Evaluation
+# ------------------ #
+
+# evaluation for 3 class xgboost
+from sklearn.metrics import classification_report, confusion_matrix, f1_score, precision_score, recall_score, mean_squared_error
+import numpy as np
+
+# Only evaluate on rows where prediction exists
+valid = df['XGB_Prediction'].notna()
+
+y_true = df.loc[valid, 'Target'].astype(int)
+y_pred = df.loc[valid, 'XGB_Prediction'].astype(int)
+y_prob = df.loc[valid, ['XGB_Short_Conf', 'XGB_Flat_Conf', 'XGB_Long_Conf']].values
+
+# Overall MDA (how often predicted class matches true class)
+mda = (y_true == y_pred).mean()
+
+# RMSE using argmax of predicted probs
+rmse = mean_squared_error(y_true, y_prob.argmax(axis=1)) ** 0.5
+
+# Classification report for per-class precision/recall/f1
+report = classification_report(y_true, y_pred, target_names=["Down", "Flat", "Up"])
+
+# Confusion matrix (optional)
+conf_mat = confusion_matrix(y_true, y_pred)
+
+# Print results
+print("📊 XGBoost 3-Class Evaluation")
+print(f"Mean Directional Accuracy (MDA): {mda:.2%}")
+print(f"RMSE (class argmax):             {rmse:.4f}")
+print("\nClassification Report:\n", report)
+print("Confusion Matrix:\n", conf_mat)
+
