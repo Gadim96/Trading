@@ -84,6 +84,8 @@ This project includes a custom backtester (`backtester.py`) that simulates reali
 
 ![Equity Curve](equity_curve.png)
 
+> ⚠️ **Note**: This equity curve reflects baseline performance using ATR-adjusted entries without volatility regime filtering. While the model captures directional momentum in certain regions, overall performance suffers during high-noise, low-volatility periods. Future improvements will incorporate GARCH-based volatility filters and trend-adaptive logic to reduce drawdown and improve Sharpe ratio.
+
 ## 🧪 Usage
 
 ```bash
