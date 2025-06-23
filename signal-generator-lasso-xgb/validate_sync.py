@@ -1,24 +1,36 @@
 """
 validate_sync.py
 
-Randomly samples and compares mapped signals from 2h to 1m bars for quality control.
+Randomly samples and compares mapped signals from a higher timeframe (e.g., 2h) to a lower timeframe (e.g., 1m)
+to verify signal synchronization and mapping quality.
 """
 
 import pandas as pd
 import numpy as np
 import random
 
-def validate_mapping(df_2h, df_1m, sample_size=10):
-    df_1m['Close_time'] = pd.to_datetime(df_1m['Close_time'])
-    df_2h['Close_time'] = pd.to_datetime(df_2h['Close_time'])
+def validate_mapping(df_signal, df_exec, sample_size=10):
+    """
+    Validates mapping from higher to lower timeframe by sampling and comparing signal integrity.
 
-    start_time = df_1m['Close_time'].min()
-    end_time = df_1m['Close_time'].max()
+    Parameters:
+    - df_signal: DataFrame containing original signal data (includes 'Close_time', 'Position', 'Rolling_TR', 'Close')
+    - df_exec: DataFrame with signals mapped (includes 'Close_time', 'Position', 'Signal_Close', 'Rolling_TR')
+    - sample_size: Number of random samples to compare
 
-    signal_rows = df_2h[
-        (df_2h['Position'] != 0) &
-        (df_2h['Close_time'] >= start_time) &
-        (df_2h['Close_time'] <= end_time)
+    Prints mismatches and sample comparisons.
+    """
+
+    df_signal['Close_time'] = pd.to_datetime(df_signal['Close_time'])
+    df_exec['Close_time'] = pd.to_datetime(df_exec['Close_time'])
+
+    start_time = df_exec['Close_time'].min()
+    end_time = df_exec['Close_time'].max()
+
+    signal_rows = df_signal[
+        (df_signal['Position'] != 0) &
+        (df_signal['Close_time'] >= start_time) &
+        (df_signal['Close_time'] <= end_time)
     ]
 
     print(f"🧾 Usable signals found: {len(signal_rows)}")
@@ -26,27 +38,29 @@ def validate_mapping(df_2h, df_1m, sample_size=10):
     sample_indices = random.sample(list(signal_rows.index), min(sample_size, len(signal_rows)))
 
     for idx in sample_indices:
-        row_2h = df_2h.loc[idx]
-        signal_time = row_2h['Close_time']
-        match_idx = df_1m['Close_time'].searchsorted(signal_time, side='right')
+        row_signal = df_signal.loc[idx]
+        signal_time = row_signal['Close_time']
+        match_idx = df_exec['Close_time'].searchsorted(signal_time, side='right')
 
-        if match_idx >= len(df_1m):
-            print(f"⚠️ Signal at {signal_time} has no match in 1m bars.")
+        if match_idx >= len(df_exec):
+            print(f"⚠️ Signal at {signal_time} has no matching lower-TF bar.")
             continue
 
-        row_1m = df_1m.iloc[match_idx]
-        print("\n--- Signal Match ---")
-        print(f"2h Time: {row_2h['Close_time']} | 1m Time: {row_1m['Close_time']}")
-        print(f"2h Pos: {row_2h['Position']} | 1m Pos: {row_1m['Position']}")
-        print(f"2h Close: {row_2h['Close']} | 1m Signal_Close: {row_1m['Signal_Close']}")
-        print(f"2h TR: {row_2h['Rolling_TR']} | 1m TR: {row_1m['Rolling_TR']}")
+        row_exec = df_exec.iloc[match_idx]
 
-        # Optional assertions
-        # assert row_2h['Position'] == row_1m['Position'], "Mismatch in Position"
-        # assert np.isclose(row_2h['Close'], row_1m['Signal_Close'], atol=1e-6), "Mismatch in Close"
-        # assert np.isclose(row_2h['Rolling_TR'], row_1m['Rolling_TR'], atol=1e-6), "Mismatch in TR"
+        print("\n--- Signal Match ---")
+        print(f"Signal Time     : {row_signal['Close_time']} → Exec Time: {row_exec['Close_time']}")
+        print(f"Signal Position : {row_signal['Position']}     | Exec Position: {row_exec['Position']}")
+        print(f"Signal Close    : {row_signal['Close']}        | Exec Signal_Close: {row_exec['Signal_Close']}")
+        print(f"Signal TR       : {row_signal['Rolling_TR']}   | Exec TR: {row_exec['Rolling_TR']}")
+
+        # Optional strict checks
+        # assert row_signal['Position'] == row_exec['Position'], "Position mismatch!"
+        # assert np.isclose(row_signal['Close'], row_exec['Signal_Close'], atol=1e-6), "Close mismatch!"
+        # assert np.isclose(row_signal['Rolling_TR'], row_exec['Rolling_TR'], atol=1e-6), "TR mismatch!"
 
 if __name__ == "__main__":
-    df_2h = pd.read_csv("data_2h.csv")
-    df_1m = pd.read_csv("data_1m_with_signals.csv")
-    validate_mapping(df_2h, df_1m)
+    df_signal = pd.read_csv("data_signal.csv")               # Higher timeframe
+    df_exec = pd.read_csv("data_exec_with_signals.csv")      # Lower timeframe with mapped signals
+
+    validate_mapping(df_signal, df_exec)
