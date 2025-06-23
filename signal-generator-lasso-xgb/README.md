@@ -92,6 +92,20 @@ This project includes a custom backtester (`backtester.py`) that simulates reali
 
 > ⚠️ **Note**: This equity curve reflects baseline performance using ATR-adjusted entries without volatility regime filtering. While the model captures directional momentum in certain regions, overall performance suffers during high-noise, low-volatility periods. Future improvements will incorporate GARCH-based volatility filters and trend-adaptive logic to reduce drawdown and improve Sharpe ratio.
 
+## ⚙️ Custom Backtester Module
+
+The included backtester (`backtest.py`) simulates realistic trade execution with:
+
+- Entry latency (`MAX_WAIT_BARS`)
+- ATR-based or fixed SL/TP logic
+- Maker fees and leverage modeling
+- Ambiguity resolution (TP & SL in same bar)
+- Performance metrics:
+  - Win rate
+  - Drawdown
+  - Final balance
+  - 🔹 Sharpe ratio (per trade and annualized)
+
 ## 🧪 Usage
 
 ```bash
