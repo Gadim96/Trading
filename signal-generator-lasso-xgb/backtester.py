@@ -190,3 +190,24 @@ def plot_equity_curve(timestamps, equity_curve):
     plt.grid(True)
     plt.legend()
     plt.show()
+
+if __name__ == "__main__":
+    import pandas as pd
+
+    # --- Load sample data ---
+    df = pd.read_csv("sample_data.csv")
+    
+    # --- Preprocess expected columns if needed ---
+    # Assumes 'Close', 'High', 'Low', 'Position', 'Rolling_TR', 'Realized_Vol_6' are present
+    # Add any missing ones or mock if testing
+
+    # --- Run Backtest ---
+    results = run_backtest(df)
+
+    # --- Plot Equity Curve ---
+    plot_equity_curve(results["timestamps"], results["equity_curve"])
+
+    # --- Print Summary Metrics ---
+    print("📊 Backtest Summary:")
+    for k, v in results["summary"].items():
+        print(f"{k}: {v}")
