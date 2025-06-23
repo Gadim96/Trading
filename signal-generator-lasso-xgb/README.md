@@ -1,31 +1,79 @@
 # Execution-Aware Signal Generator (Lasso/XGBoost)
 
-This project demonstrates a rolling-window machine learning pipeline for generating trading signals from financial time series. It simulates execution-aware long/short positioning using Lasso and XGBoost.
+This project demonstrates a rolling-window machine learning pipeline for generating trading signals from financial time series data. It simulates execution-aware long/short positioning using Lasso and XGBoost models.
 
 ## Overview
 
-- Uses synthetic or historical returns data
-- Applies Lasso and XGBoost with walk-forward training
-- Generates long/short signals
-- Evaluates accuracy and plots strategy PnL
+- Fetches historical crypto data (Binance)
+- Extracts predictive features including volatility, momentum, GARCH
+- Trains models (Lasso or XGBoost) using walk-forward validation
+- Generates 3-class directional signals: Down, Flat, Up
+- Evaluates predictive accuracy and compares volatility forecasts
 
-## Example
+---
 
-![Backtest Result](backtest_output.png)
+## 🧠 Feature Engineering
 
-## Files
+- Realized & GARCH volatility
+- Momentum, Z-scores, imbalance
+- RSI, MACD, signed volume
+- Rolling-window standardization
 
-- `signal_generator.py`: Main script for feature engineering, training, signal generation
-- `backtest_output.png`: Strategy PnL vs baseline plot
-- `sample_data.csv`: Optional sample input (if not generated on the fly)
+Implemented in [`feaeture_engineering.py`](feaeture_engineering.py)
 
-## How to Run
+---
+
+## 🔍 Volatility Forecast Example
+
+GARCH model fitted to log returns and compared against realized volatility.
+
+![GARCH Forecast Plot](garch_plot.png)
+
+---
+
+## 🎯 XGBoost Model Evaluation
+
+Rolling 3-class XGBoost classifier trained on engineered features.
+
+![XGBoost Evaluation](model_evaluation.png)
+
+---
+
+## 📁 File Guide
+
+| File | Description |
+|------|-------------|
+| `fetch_data.py` | Pulls historical Binance futures data |
+| `feaeture_engineering.py` | Constructs predictive features for ML |
+| `xgboost_signal_generator.py` | Builds rolling XGBoost model and generates signals |
+| `model_evaluation.png` | Evaluation screenshot for 3-class classifier |
+| `garch_plot.png` | Volatility forecast vs realized vol plot |
+
+---
+
+## ▶️ How to Run
 
 ```bash
-python signal_generator.py
+python fetch_data.py
+python feauture_engineering.py
+python xgboost_signal_generator.py
 ```
 
-## Dependencies
+## 🔧 Dependencies
 
 - Python 3.9+
-- pandas, numpy, sklearn, matplotlib, xgboost
+- pandas
+- numpy
+- matplotlib
+- scikit-learn
+- xgboost
+- arch
+- python-binance
+
+
+## 📌 Notes
+
+- Rolling-window logic avoids lookahead bias
+- Feature engineering is modular — extendable for new signals
+- GARCH fitting can be slow; consider reducing rolling window for faster runs
+- Backtest logic not included here — can be added using `backtrader`, `bt`, or custom code
