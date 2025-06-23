@@ -44,10 +44,14 @@ Rolling 3-class XGBoost classifier trained on engineered features.
 | File | Description |
 |------|-------------|
 | `fetch_data.py` | Pulls historical Binance futures data |
-| `feaeture_engineering.py` | Constructs predictive features for ML |
+| `feature_engineering.py` | Constructs predictive features for ML |
 | `xgboost_signal_generator.py` | Builds rolling XGBoost model and generates signals |
+| `backtest.py` | Custom backtester with execution-aware logic |
+| `sync_dfs.py` | Maps higher-TF (2h) signals to lower-TF (1m) execution bars |
+| `validate_sync.py` | Random sample-based validation of sync integrity |
 | `model_evaluation.png` | Evaluation screenshot for 3-class classifier |
 | `garch_plot.png` | Volatility forecast vs realized vol plot |
+| `equity_curve.png` | Equity curve after backtest execution |
 
 ---
 
@@ -96,9 +100,20 @@ pip install -r requirements.txt
 python backtest.py
 ```
 
+## 🔄 Multi-Timeframe Signal Sync
+
+This project supports 2h-to-1m reconciliation to evaluate how higher-timeframe signals behave in lower-timeframe execution environments.
+
+Key scripts:
+- `sync_dfs.py`: Attaches each 2h signal to the next available 1m bar (by `Close_time`)
+- `validate_sync.py`: Samples matched signals for manual inspection and validation
+
+This enables granular testing of signal behavior under 1m volatility, slippage, and ambiguity conditions — essential for realistic PnL evaluation and trade timing.
+
+
 ## 📌 Notes
 
 - Rolling-window logic avoids lookahead bias
 - Feature engineering is modular — extendable for new signals
 - GARCH fitting can be slow; consider reducing rolling window for faster runs
-- Backtest logic not included here — can be added using `backtrader`, `bt`, or custom code
+
