@@ -102,13 +102,13 @@ python backtest.py
 
 ## 🔄 Multi-Timeframe Signal Sync
 
-This project supports 2h-to-1m reconciliation to evaluate how higher-timeframe signals behave in lower-timeframe execution environments.
+This module maps **higher-timeframe signals (e.g., 2h)** to **lower-timeframe execution bars (e.g., 1m)** for realistic backtesting. While the default setup uses 2h and 1m, the scripts are fully generalizable to any timeframe pair.
 
-Key scripts:
-- `sync_dfs.py`: Attaches each 2h signal to the next available 1m bar (by `Close_time`)
-- `validate_sync.py`: Samples matched signals for manual inspection and validation
+Scripts:
+- `sync_dfs.py`: Attaches signals from the higher-frequency DataFrame to the next matching execution bar
+- `validate_sync.py`: Randomly samples matches for integrity checks and debugging
 
-This enables granular testing of signal behavior under 1m volatility, slippage, and ambiguity conditions — essential for realistic PnL evaluation and trade timing.
+This enables granular testing of signal behavior under 1m volatility and ambiguity conditions — essential for realistic PnL evaluation and trade timing.
 
 
 ## 📌 Notes
