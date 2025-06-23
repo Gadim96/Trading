@@ -70,15 +70,20 @@ python xgboost_signal_generator.py
 - arch
 - python-binance
 
-## 🧪 Backtesting
+## Backtester
 
-`custom_backtester.py` implements a minimal yet precise backtest engine with:
+This project includes a custom backtester (`backtester.py`) that simulates realistic execution logic for long/short strategies. Key features include:
 
-- Stop-loss / take-profit triggers
-- Position-based equity tracking
-- Strategy PnL and risk metrics (e.g. Sharpe, Max Drawdown)
+- ATR or volatility-based entry filtering
+- Dynamic stop-loss / take-profit
+- Randomized resolution of ambiguous bars (when both stop and target are hit)
+- Maker fees and leverage impact
+- Metrics: win rate, drawdown, PnL, ambiguity
 
-It can be run standalone or plugged into signal outputs from `xgboost_signal_generator.py`.
+**Example output:**
+
+![Backtest Result](backtest_equity_curve.png)
+
 
 
 ## 📌 Notes
