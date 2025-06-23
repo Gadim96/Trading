@@ -82,7 +82,7 @@ This project includes a custom backtester (`backtester.py`) that simulates reali
 
 ## 📈 Example Output
 
-![Equity Curve](plots/equity_curve.png)
+![Equity Curve](equity_curve.png)
 
 ## 🧪 Usage
 
