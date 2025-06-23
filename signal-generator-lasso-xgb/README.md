@@ -79,19 +79,6 @@ This project includes a custom backtester (`backtester.py`) that simulates reali
 - Randomized resolution of ambiguous bars (when both stop and target are hit)
 - Maker fees and leverage impact
 - Metrics: win rate, drawdown, PnL, ambiguity
-# Execution-Aware Signal Generator
-
-A modular backtesting engine for directional trading signals, designed for high-frequency environments with realistic execution constraints such as **latency**, **spread**, and **ambiguous bars**. Built to evaluate signal quality under execution-aware assumptions, simulating realistic market conditions.
-
-## 🔍 Features
-
-- **Rolling Signal Engine** with Lasso/XGBoost compatibility
-- **Execution-aware backtest**:
-  - Simulates delayed entries (`MAX_WAIT_BARS`)
-  - Models spread and ambiguous bar outcomes (SL/TP touched in same bar)
-- **ATR/Volatility Filters** to adapt entry/exit thresholds
-- **Trade-by-trade accounting** of PnL, balance, drawdown
-- **Metrics**: Final balance, win rate, drawdown, ambiguous trade rate
 
 ## 📈 Example Output
 
@@ -106,12 +93,6 @@ pip install -r requirements.txt
 # Run backtest on sample data
 python backtest.py
 ```
-
-**Example output:**
-
-![Backtest Result](backtest_equity_curve.png)
-
-
 
 ## 📌 Notes
 
