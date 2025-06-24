@@ -81,16 +81,16 @@ def plot_curve(df):
     os.makedirs("plots", exist_ok=True)
     fname = f"plots/curve_{dt.date.today()}.png"
     plt.savefig(fname, dpi=300)
-    print(f"✅ Plot saved to {fname}")
+    print(f" Plot saved to {fname}")
 
 # ---------- 5. Pipeline ----------
 def main():
     # 1) Try FRED live download
     try:
         yields = download_yields().iloc[-1]  # latest row
-        print("🟢 Pulled latest yields from FRED")
+        print(" Pulled latest yields from FRED")
     except Exception as e:
-        print("🔴 FRED download failed → using local CSV")
+        print(" FRED download failed → using local CSV")
         yields = pd.read_csv("data/treasury_yields.csv", index_col=0).iloc[-1]
 
     zero_df = bootstrap_zero_curve(yields)
