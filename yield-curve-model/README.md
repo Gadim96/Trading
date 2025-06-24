@@ -11,13 +11,13 @@ This project constructs a zero-coupon USD yield curve from Treasury par yields a
 
 
 
-## 📈 Today's Yield Curve
+##  Today's Yield Curve
 
 <p align="center">
   <img src="curve_plot.png" alt="Yield Curve Plot" width="600"/>
 </p>
 
-## 🔮 Kalman Forecast (30-Day Horizon)
+##  Kalman Forecast (30-Day Horizon)
 
 <p align="center">
   <img src="kalman_filtered_curve.png" alt="Kalman-Filtered Nelson-Siegel Curve Forecasts" width="600"/>
