@@ -13,6 +13,13 @@ This project constructs a zero-coupon USD yield curve from Treasury par yields a
   <img src="curve_plot.png" alt="Yield Curve Plot" width="600"/>
 </p>
 
+## 📈 Today's Yield Curve
+
+<img src="curve.png" width="700"/>
+
+## 🔮 Kalman Forecast (30-Day Horizon)
+
+<img src="forecast.png" width="700"/>
 ##  Getting Started
 
 ```bash
