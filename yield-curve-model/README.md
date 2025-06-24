@@ -9,17 +9,20 @@ This project constructs a zero-coupon USD yield curve from Treasury par yields a
 - Fits the **Nelson-Siegel** model using nonlinear least squares
 - Plots the raw vs. fitted term structure and saves it
 
+
+
+## 📈 Today's Yield Curve
+
 <p align="center">
   <img src="curve_plot.png" alt="Yield Curve Plot" width="600"/>
 </p>
 
-## 📈 Today's Yield Curve
-
-<img src="curve.png" width="700"/>
-
 ## 🔮 Kalman Forecast (30-Day Horizon)
 
-<img src="forecast.png" width="700"/>
+<p align="center">
+  <img src="kalman_filtered_curve.png" alt="Kalman-Filtered Nelson-Siegel Curve Forecasts" width="600"/>
+</p>
+
 ##  Getting Started
 
 ```bash
