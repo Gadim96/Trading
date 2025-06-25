@@ -21,21 +21,31 @@ This tool performs a rolling regression analysis to explain movements in US Trea
 
 - **Rolling R²**: How well macro variables explain each target over time
 - **Rolling β(CPI)**: Coefficient on CPI with 95% confidence intervals
-## 📊 Sample Plots
+
+##  Sample Plots
 
 ### Rolling R²
-**10-Year Yield**
-![r2-10-year](r2-10-year-yield.png)
 
-**10Y–2Y Slope**
-![r2-slope](rolling-r2-10Y-2Yyear.png)
+<p align="center">
+  <img src="r2-10-year-yield.png" alt="R² – 10-Year Yield" width="600"/>
+</p>
+
+<p align="center">
+  <img src="rolling-r2-10Y-2Yyear.png" alt="R² – 10Y–2Y Slope" width="600"/>
+</p>
+
+---
 
 ### β(CPI) Coefficient
-**10-Year Yield**
-![beta-10y](10-year-yield.png)
 
-**10Y–2Y Slope**
-![beta-slope](10Y-2Y.png)
+<p align="center">
+  <img src="10-year-yield.png" alt="β(CPI) – 10-Year Yield" width="600"/>
+</p>
+
+<p align="center">
+  <img src="10Y-2Y.png" alt="β(CPI) – 10Y–2Y Slope" width="600"/>
+</p>
+
 
 ## 🛠️ Usage
 
