@@ -60,8 +60,4 @@ Saved under the `/figures` directory:
 </p>
 
 
-## 📦 Installation
 
-```bash
-pip install -r requirements.txt
-```
