@@ -10,14 +10,18 @@ It saves five plots to visualize cumulative return, betas, hedge weights, volati
 
 ---
 
-## 🔧 Methodology
+## ⚙️ Methodology
 
-- **Beta Estimation:** Rolling OLS regressions estimate sensitivity to macro shocks.
-- **Shock Definitions:**
-  - CPI shock = z-score of 12-month YoY CPI change
-  - Fed shock = clipped 4-day change in Fed Funds rate
-- **Hedging:** Uses rolling covariance to size positions in ZN and DXY to minimize risk exposure.
-- **Volatility Targeting:** Scales exposure to keep realized vol at 80% of original level.
+- **Portfolio**: SPY, QQQ, EEM, GLD (inverse-volatility weighted)
+- **Macro Factors**: 
+  - CPI shocks (z-score of YoY inflation surprise)
+  - Fed shocks (clipped 4-day change in Fed Funds)
+- **Hedge Assets**: 
+  - 10-Year Treasury Futures (`ZN=F`)
+  - Dollar Index (`DXY`)
+- **Hedging Logic**: Rolling window regression to size hedge weights based on covariance
+- **Volatility Overlay**: Scales exposure to keep risk at 80% of original portfolio volatility
+
 
 ---
 
@@ -30,7 +34,27 @@ Saved under the `/figures` directory:
 - `realised_vol.png`: Rolling 63-day vol
 - `drawdown.png`: Drawdown comparison
 
----
+
+<p align="center">
+  <img src="cum_return.png" alt="Cumulative Return" width="600"/>
+</p>
+
+<p align="center">
+  <img src="rolling_macro_betas.png" alt="Macro Betas" width="600"/>
+</p>
+
+<p align="center">
+  <img src="hedge_weights.png" alt="Hedge Weights" width="600"/>
+</p>
+
+<p align="center">
+  <img src="realised_vol.png" alt="Realised Volatility" width="600"/>
+</p>
+
+<p align="center">
+  <img src="drawdown.png" alt="Drawdown" width="600"/>
+</p>
+
 
 ## 📦 Installation
 
