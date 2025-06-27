@@ -24,9 +24,13 @@ It saves five plots to visualize cumulative return, betas, hedge weights, volati
 
 
 ---
-
-## 📈 Output Charts
-
+##  Results
+- Dynamic Macro Hedge Results
+- Annualised Vol (Original): 14.88%
+- Annualised Vol (Hedged) : 12.62%
+- Volatility Reduction : 15.2%
+  
+##  Output Charts
 Saved under the `/figures` directory:
 - `cum_return.png`: Growth of $1 comparison
 - `rolling_macro_betas.png`: Betas to CPI and Fed
