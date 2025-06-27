@@ -18,7 +18,7 @@ maturity,zero_rate
 T,F,K,sigma,tau
 2,0.037,0.04,0.25,0.5
 3,0.038,0.04,0.24,0.5
-
+```
 ## Features
 
 Discount curve interpolation (log-linear)
@@ -26,7 +26,8 @@ Black's formula for caplets
 Computes price, delta, and vega
 Reads both curve and caplets from a single CSV
 Minimal dependencies (standard C++17)
-📁 Project Status
+
+## Project Status
 
 This is a self-contained academic/practical implementation, useful as:
 
