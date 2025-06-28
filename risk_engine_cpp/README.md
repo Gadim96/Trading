@@ -4,15 +4,15 @@ A modular C++ risk engine that simulates yield curve scenarios and revalues fixe
 
 ## 📌 Features
 
-- 🔧 Modular C++ design (header/source split)
-- 📈 Interest rate scenario simulation
-- 🧮 Pricing of zero-coupon bonds
-- 🧪 Unit testing with Catch2
-- ⚙️ Cross-platform CMake build with Xcode support
+- � Modular C++ design (header/source split)
+-  Interest rate scenario simulation
+-  Pricing of zero-coupon bonds
+-  Unit testing with Catch2
+-  Cross-platform CMake build with Xcode support
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 risk_engine_cpp/
 ├── include/
 │ ├── Bond.hpp # Bond instrument definition
