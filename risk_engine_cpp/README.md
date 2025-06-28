@@ -37,18 +37,4 @@ cmake --build build
 ./build/tests/test_simple
 ```
 
-## Project Structure
 
-risk_engine_cpp/
-├── include/
-│   ├── Bond.hpp
-│   ├── Curve.hpp
-│   ├── Instrument.hpp
-│   ├── RiskEngine.hpp
-│   └── Scenario.hpp
-├── src/
-│   └── Bond.cpp
-├── tests/
-│   └── test_simple.cpp
-├── CMakeLists.txt
-└── README.md
