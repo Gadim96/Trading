@@ -4,25 +4,51 @@ A modular C++ risk engine that simulates yield curve scenarios and revalues fixe
 
 ## 📌 Features
 
-- � Modular C++ design (header/source split)
--  Interest rate scenario simulation
--  Pricing of zero-coupon bonds
--  Unit testing with Catch2
--  Cross-platform CMake build with Xcode support
+- 🔧 Modular C++ design (header/source split)
+- 📈 Interest rate scenario simulation
+- 💵 Pricing of zero-coupon bonds
+- 🧪 Unit testing with Catch2
+- ⚙️ Cross-platform CMake build with Xcode support
 
 ---
 
-##  Project Structure
+## 🧠 Future Extensions
+
+- Multi-curve interest rate models
+- Additional instrument types (e.g., FRNs, swaps)
+- Real market data integration
+- Parallelized scenario generation
+
+---
+
+## 📝 Notes
+
+- I ran the project using Xcode. Simply add all files to a new Xcode project. It should compile and run without issues.
+- To run the tests, switch the scheme to the `tests` target in Xcode.
+
+---
+
+## 🔧 Manual Build with CMake (Optional)
+
+```bash
+cd risk_engine_cpp
+cmake -B build
+cmake --build build
+./build/tests/test_simple
+```
+
+## Project Structure
+
 risk_engine_cpp/
 ├── include/
-│ ├── Bond.hpp # Bond instrument definition
-│ ├── Curve.hpp # Yield curve data
-│ ├── Instrument.hpp # Base class for financial instruments
-│ ├── RiskEngine.hpp # Scenario engine for pricing under curve shifts
-│ └── Scenario.hpp # Shocked scenario representation
+│   ├── Bond.hpp
+│   ├── Curve.hpp
+│   ├── Instrument.hpp
+│   ├── RiskEngine.hpp
+│   └── Scenario.hpp
 ├── src/
-│ └── Bond.cpp # Implementation of bond pricing
+│   └── Bond.cpp
 ├── tests/
-│ └── test_simple.cpp # Unit test using Catch2
-├── CMakeLists.txt # CMake configuration
-└── README.md # Project documentation
+│   └── test_simple.cpp
+├── CMakeLists.txt
+└── README.md
