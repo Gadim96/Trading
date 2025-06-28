@@ -4,15 +4,15 @@ A modular C++ risk engine that simulates yield curve scenarios and revalues fixe
 
 ## 📌 Features
 
-- 🔧 Modular C++ design (header/source split)
-- 📈 Interest rate scenario simulation
-- 💵 Pricing of zero-coupon bonds
-- 🧪 Unit testing with Catch2
-- ⚙️ Cross-platform CMake build with Xcode support
+-  Modular C++ design (header/source split)
+-  Interest rate scenario simulation
+-  Pricing of zero-coupon bonds
+-  Unit testing with Catch2
+-  Cross-platform CMake build with Xcode support
 
 ---
 
-## 🧠 Future Extensions
+##  Future Extensions
 
 - Multi-curve interest rate models
 - Additional instrument types (e.g., FRNs, swaps)
@@ -21,14 +21,14 @@ A modular C++ risk engine that simulates yield curve scenarios and revalues fixe
 
 ---
 
-## 📝 Notes
+##  Notes
 
 - I ran the project using Xcode. Simply add all files to a new Xcode project. It should compile and run without issues.
 - To run the tests, switch the scheme to the `tests` target in Xcode.
 
 ---
 
-## 🔧 Manual Build with CMake (Optional)
+##  Manual Build with CMake (Optional)
 
 ```bash
 cd risk_engine_cpp
